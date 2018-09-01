@@ -1,7 +1,10 @@
 package com.skilldistillery.makechange;
 
+import java.text.DecimalFormat;
+
 public class RegisterArry {
 	double newAmt;
+	DecimalFormat df = new DecimalFormat("###.##");
 	
 	public void moneyArray(double amount) {
 		 newAmt = amount;
@@ -9,7 +12,6 @@ public class RegisterArry {
 		String[] nameArr = { "Twenty: ", "Ten: ", "Fives: ", "Ones: ", "Quarters: ",
 				"Dimes: ", "Nickels: ", "Pennies: " };
 
-		System.out.println("Your change is: ");
 		for (int i = 0; i < moneyArr.length; i++) {
 			amount = newAmt;
 			if (newAmt >= moneyArr[i]) {
