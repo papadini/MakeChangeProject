@@ -7,26 +7,23 @@ public class MakeChange {
 
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
-		System.out.println("Hello shopper, welcome to Papas Pantry!");
-		System.out.println("You are about to enter the register, continue to enter ");
-		System.out.println("items, after your all done type \"DONE\" and ");
-		System.out.println("you will be given your total and asked to pay Papa!");
-		System.out.println("Change will be provided down to the penny!");
-		System.out.println("Thats Papa's Promise!");
-		double total = 0.00, price = 0.00, tax, grandTotal;
+		DecimalFormat df = new DecimalFormat("00.00");
 		String answer;
-		DecimalFormat df = new DecimalFormat("###.##");
+		double total = 0.00, price = 0.00, tax, grandTotal;
 		
+		greeting();
 		do {
-			 price = itemPrice();
+			price = itemPrice();
+			double newItem = price;
+			Cart cart = new Cart();
+			cart.saveCart(newItem);
 			total = total + price;
 			System.out.println("Want to enter another item or are you \"DONE\" ");
-			 answer = kb.next();
-			
-			
+			answer = kb.next();
 		} while (!answer.equals("DONE"));
+
 		System.out.println("total: $" + total);
-		tax = ((total * .08924)*100.0 ) / 100.00;
+		tax = (total * .08924);
 		System.out.println("tax: $" + df.format(tax));
 		grandTotal = total + tax;
 		System.out.println("Grand Total: $" + df.format(grandTotal));
@@ -34,11 +31,14 @@ public class MakeChange {
 		double userMoney = kb.nextDouble();
 		notEnoughOrEqual(userMoney, grandTotal);
 		double change = (userMoney - grandTotal);
-		RegisterArry regArry = new RegisterArry ();
+		RegisterArry regArry = new RegisterArry(); // fix format to the change
 		regArry.moneyArray(change);
+		System.out.println("Change total: $" + df.format(change));
 
 		kb.close();
 	}
+	
+	
 	public static void notEnoughOrEqual (double money, double price) {
 		
 		if (money < price) {
@@ -52,13 +52,29 @@ public class MakeChange {
 	public static double itemPrice ( ) {
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("Item Price: $");
-		double itemPrice = keyboard.nextDouble();
-		
+		double itemPrice = (double) (keyboard.nextDouble());
 		//keyboard.close();
 		
 		return itemPrice;
 		
 	}
 	
+	public static void greeting() {
+		System.out.println("Hello shopper, welcome to Papas Pantry!");
+		System.out.println("You are about to enter the register, continue to enter ");
+		System.out.println("items, after your all done type \"DONE\" and ");
+		System.out.println("you will be given your total and asked to pay Papa!");
+		System.out.println("Change will be provided down to the penny!");
+		System.out.println("Thats Papa's Promise!");
+		
+	}
+	
+	
 
+	
+	
+
+	
+	
+	
 }
