@@ -4,28 +4,23 @@ import java.text.DecimalFormat;
 
 public class RegisterArry {
 	double newAmt;
-	DecimalFormat df = new DecimalFormat("###.##");
-	
+	DecimalFormat df = new DecimalFormat("00.00");
+
 	public void moneyArray(double amount) {
-		 newAmt = amount;
-		double[] moneyArr = { 20, 10, 5, 1, .25, .10, .05, .01 };
-		String[] nameArr = { "Twenty: ", "Ten: ", "Fives: ", "Ones: ", "Quarters: ",
-				"Dimes: ", "Nickels: ", "Pennies: " };
+		newAmt = amount * 100;
+		int moneyCount;
+		double[] moneyArr = { 2000, 1000, 500, 100, 25, 10, 5, .9 };
+		String[] nameArr = { "Twenties: ", "Tens: ", "Fives: ", "Ones: ", "Quarters: ", "Dimes: ", "Nickels: ",
+				"Pennies: " };
 
 		for (int i = 0; i < moneyArr.length; i++) {
 			amount = newAmt;
 			if (newAmt >= moneyArr[i]) {
 				newAmt = (amount % moneyArr[i]);
-				int moneyCount = (int) ((amount - newAmt) / moneyArr[i]);
-				System.out.println(nameArr[i] + moneyCount); // amount of 20s in change
+				moneyCount = (int) ((amount - newAmt) / moneyArr[i]);
+				System.out.println(nameArr[i] + moneyCount ); 
 				amount = amount - (moneyCount * moneyArr[i]);
 			}
-		}
-		if (amount <= .5 && amount > .01) {
-			System.out.println("Nickels: 1");
-		}
-		if (amount <= .01 && amount > .008) {
-			System.out.println("Pennies: 1");
 		}
 
 	}
